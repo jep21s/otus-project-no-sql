@@ -1,0 +1,15 @@
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+out/
+*.iml
+.idea/
+.vscode/
+report/
+docker-compose/couchbase/certs/
+*.log
+/tools/
+/opencode.json
+/RESULT.md
+/.venv/
+/.kotlin/

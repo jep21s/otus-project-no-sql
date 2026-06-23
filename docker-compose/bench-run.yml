@@ -1,0 +1,17 @@
+services:
+  bench:
+    image: order-bench:latest
+    restart: "no"
+    volumes:
+      - ../bench:/bench:ro
+      - ../load:/load:ro
+    environment:
+      - LOCUST_PROFILE=${LOCUST_PROFILE:-mixed}
+
+  seed:
+    image: order-service:latest
+    restart: "no"
+    environment:
+      APP_SEED: "true"
+      SPRING_PROFILES_ACTIVE: ${SEED_PROFILE:-a1}
+      SPRING_MAIN_WEB_APPLICATION_TYPE: "none"

@@ -1,0 +1,66 @@
+name: orders-b2
+
+# Couchbase multi-node (secure-join TLS): FQDN + статические IP + сертификаты общего CA.
+services:
+  couchbase-node-1:
+    image: couchbase/server:7.6.0
+    hostname: node-1.cb.internal
+    entrypoint: ["/wrapper/cb-node-entrypoint.sh"]
+    volumes:
+      - ./couchbase/certs:/staged:ro
+      - ./couchbase/cb-node-entrypoint.sh:/wrapper/cb-node-entrypoint.sh:ro
+    networks:
+      default:
+        ipv4_address: 172.28.0.11
+        aliases: [node-1.cb.internal]
+
+  couchbase-node-2:
+    image: couchbase/server:7.6.0
+    hostname: node-2.cb.internal
+    entrypoint: ["/wrapper/cb-node-entrypoint.sh"]
+    volumes:
+      - ./couchbase/certs:/staged:ro
+      - ./couchbase/cb-node-entrypoint.sh:/wrapper/cb-node-entrypoint.sh:ro
+    networks:
+      default:
+        ipv4_address: 172.28.0.12
+        aliases: [node-2.cb.internal]
+
+  couchbase-init:
+    image: couchbase/server:7.6.0
+    depends_on: [couchbase-node-1, couchbase-node-2]
+    entrypoint: ["/bin/bash", "/setup/couchbase-setup.sh"]
+    environment:
+      CB_NODES: node-1.cb.internal,node-2.cb.internal
+      CB_BUCKET: orders
+      CB_USER: Administrator
+      CB_PASS: password
+      CB_RAMSIZE: "1024"
+    volumes:
+      - ./couchbase-setup.sh:/setup/couchbase-setup.sh:ro
+    networks: [default]
+
+  app:
+    image: order-service:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: b2
+      JAVA_OPTS: "-XX:MaxRAMPercentage=75 -XX:+UseG1GC"
+    depends_on:
+      couchbase-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health | grep -q status"]
+      interval: 5s
+      timeout: 4s
+      retries: 60
+      start_period: 25s
+    ports:
+      - "8080:8080"
+    networks: [default]
+
+networks:
+  default:
+    name: orders-b2-net
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

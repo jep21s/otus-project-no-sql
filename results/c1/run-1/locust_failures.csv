@@ -1,0 +1,6 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,GET /api/users/me,HTTPError('500 Server Error: Internal Server Error for url: GET /api/users/me'),889,2026-06-22T12:08:51Z,2026-06-22T12:10:21Z
+GET,GET /api/products/{id},HTTPError('500 Server Error: Internal Server Error for url: GET /api/products/{id}'),882,2026-06-22T12:08:51Z,2026-06-22T12:10:21Z
+GET,GET /api/products,HTTPError('500 Server Error: Internal Server Error for url: GET /api/products'),910,2026-06-22T12:08:51Z,2026-06-22T12:10:21Z
+GET,GET /api/orders (cached),CatchResponseError('500'),13947,2026-06-22T12:08:24Z,2026-06-22T12:10:21Z
+POST,POST /api/orders,CatchResponseError('500'),13959,2026-06-22T12:08:24Z,2026-06-22T12:10:21Z

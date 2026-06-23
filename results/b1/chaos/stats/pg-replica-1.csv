@@ -1,0 +1,3 @@
+timestamp,cpu_percent,mem_usage_bytes,mem_limit_bytes,mem_percent,net_rx_bytes,net_tx_bytes,blk_read_bytes,blk_write_bytes
+2026-06-22T13:12:39,5.16,122949632,33021190144,0.37,50614299,144948,0,0
+2026-06-22T13:12:55,7.83,124739584,33021190144,0.38,54852563,1418919,0,0

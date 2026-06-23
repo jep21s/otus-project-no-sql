@@ -1,0 +1,16 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,GET /api/users/me,HTTPError('500 Server Error: Internal Server Error for url: GET /api/users/me'),386,2026-06-22T16:05:03Z,2026-06-22T16:06:42Z
+GET,GET /api/products/{id},HTTPError('502 Server Error: Bad Gateway for url: GET /api/products/{id}'),1065,2026-06-22T16:05:28Z,2026-06-22T16:05:35Z
+POST,POST /api/orders,CatchResponseError('502'),1059,2026-06-22T16:05:28Z,2026-06-22T16:05:35Z
+GET,GET /api/products/{id},HTTPError('500 Server Error: Internal Server Error for url: GET /api/products/{id}'),350,2026-06-22T16:05:04Z,2026-06-22T16:06:41Z
+POST,POST /api/orders,CatchResponseError('504'),4,2026-06-22T16:05:20Z,2026-06-22T16:05:23Z
+GET,GET /api/products,HTTPError('500 Server Error: Internal Server Error for url: GET /api/products'),378,2026-06-22T16:05:03Z,2026-06-22T16:06:42Z
+GET,GET /api/orders (cached),CatchResponseError('500'),387,2026-06-22T16:05:03Z,2026-06-22T16:06:42Z
+GET,GET /api/products,HTTPError('502 Server Error: Bad Gateway for url: GET /api/products'),1011,2026-06-22T16:05:28Z,2026-06-22T16:05:35Z
+DELETE,DELETE /api/orders/{id},CatchResponseError('502'),427,2026-06-22T16:05:28Z,2026-06-22T16:05:35Z
+POST,POST /api/orders,CatchResponseError('500'),376,2026-06-22T16:05:03Z,2026-06-22T16:06:42Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('500 Server Error: Internal Server Error for url: PATCH /api/orders/{id}/status'),203,2026-06-22T16:05:03Z,2026-06-22T16:06:41Z
+GET,GET /api/orders (cached),CatchResponseError('502'),1005,2026-06-22T16:05:23Z,2026-06-22T16:05:35Z
+GET,GET /api/users/me,HTTPError('502 Server Error: Bad Gateway for url: GET /api/users/me'),1068,2026-06-22T16:05:28Z,2026-06-22T16:05:35Z
+DELETE,DELETE /api/orders/{id},CatchResponseError('500'),188,2026-06-22T16:05:03Z,2026-06-22T16:06:42Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('502 Server Error: Bad Gateway for url: PATCH /api/orders/{id}/status'),454,2026-06-22T16:05:28Z,2026-06-22T16:05:35Z

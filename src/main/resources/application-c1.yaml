@@ -1,0 +1,39 @@
+# C1: PostgreSQL master + 2 replicas + Redis Cluster (3 master + 3 replica)
+spring:
+  datasource:
+    url: jdbc:postgresql://pg-master:5432,pg-replica-1:5432,pg-replica-2:5432/orders?targetServerType=primary&loadBalanceHosts=true
+    username: orders
+    password: orders
+    hikari:
+      maximum-pool-size: 30
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
+        default_batch_fetch_size: 50
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  data:
+    redis:
+      cluster:
+        nodes:
+          - redis-node-1:6379
+          - redis-node-2:6379
+          - redis-node-3:6379
+          - redis-node-4:6379
+          - redis-node-5:6379
+          - redis-node-6:6379
+      lettuce:
+        pool:
+          max-active: 24
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.couchbase.CouchbaseAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.couchbase.CouchbaseDataAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.couchbase.CouchbaseRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.couchbase.CouchbaseReactiveDataAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.couchbase.CouchbaseReactiveRepositoriesAutoConfiguration

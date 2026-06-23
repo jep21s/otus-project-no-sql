@@ -1,0 +1,53 @@
+cases:
+  a1:
+    compose: docker-compose/a1-pg-redis-single.yml
+    target: pg
+    pg_host: postgres
+    bench_host: app
+    stack: "PostgreSQL standalone + Redis standalone"
+    tier: A
+  a2:
+    compose: docker-compose/a2-couchbase-single.yml
+    target: couchbase
+    cb_conn: couchbase://couchbase
+    bench_host: app
+    stack: "Couchbase single node"
+    tier: A
+  b1:
+    compose: docker-compose/b1-pg-redis-ha.yml
+    target: pg
+    pg_host: pg-master
+    bench_host: app
+    stack: "PG master+replica + Redis master+replica+3 sentinel"
+    tier: B
+  b2:
+    compose: docker-compose/b2-couchbase-2node.yml
+    target: couchbase
+    cb_conn: couchbase://node-1.cb.internal
+    bench_host: app
+    stack: "Couchbase 2-node cluster (secure-join TLS)"
+    tier: B
+    certs: [node-1.cb.internal:172.28.0.11, node-2.cb.internal:172.28.0.12]
+  c1:
+    compose: docker-compose/c1-pg-redis-cluster.yml
+    target: pg
+    pg_host: pg-master
+    bench_host: nginx
+    stack: "PG master+2 replica + Redis Cluster + 2 app"
+    tier: C
+  c2:
+    compose: docker-compose/c2-couchbase-3node.yml
+    target: couchbase
+    cb_conn: couchbase://node-1.cb.internal
+    bench_host: nginx
+    stack: "Couchbase 3-node cluster (secure-join TLS) + 2 app"
+    tier: C
+    certs: [node-1.cb.internal:172.28.0.11, node-2.cb.internal:172.28.0.12, node-3.cb.internal:172.28.0.13]
+
+defaults:
+  users: 1000
+  spawn_rate: 25
+  duration_sec: 120
+  runs: 3
+  cooldown_sec: 30
+  profiles: [mixed]

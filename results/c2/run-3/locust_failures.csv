@@ -1,0 +1,18 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,GET /api/users/me,HTTPError('500 Server Error: Internal Server Error for url: GET /api/users/me'),354,2026-06-22T16:09:29Z,2026-06-22T16:11:06Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('504 Server Error: Gateway Time-out for url: PATCH /api/orders/{id}/status'),3,2026-06-22T16:09:45Z,2026-06-22T16:10:32Z
+GET,GET /api/products/{id},HTTPError('502 Server Error: Bad Gateway for url: GET /api/products/{id}'),2414,2026-06-22T16:09:45Z,2026-06-22T16:09:59Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('404 Client Error:  for url: PATCH /api/orders/{id}/status'),2,2026-06-22T16:10:59Z,2026-06-22T16:11:04Z
+POST,POST /api/orders,CatchResponseError('502'),2473,2026-06-22T16:09:45Z,2026-06-22T16:09:59Z
+GET,GET /api/products/{id},HTTPError('500 Server Error: Internal Server Error for url: GET /api/products/{id}'),360,2026-06-22T16:09:29Z,2026-06-22T16:11:07Z
+POST,POST /api/orders,CatchResponseError('504'),3,2026-06-22T16:09:47Z,2026-06-22T16:10:32Z
+GET,GET /api/products,HTTPError('500 Server Error: Internal Server Error for url: GET /api/products'),358,2026-06-22T16:09:30Z,2026-06-22T16:11:07Z
+GET,GET /api/orders (cached),CatchResponseError('500'),367,2026-06-22T16:09:29Z,2026-06-22T16:11:07Z
+GET,GET /api/products,HTTPError('502 Server Error: Bad Gateway for url: GET /api/products'),2522,2026-06-22T16:09:45Z,2026-06-22T16:09:59Z
+DELETE,DELETE /api/orders/{id},CatchResponseError('502'),823,2026-06-22T16:09:45Z,2026-06-22T16:09:59Z
+POST,POST /api/orders,CatchResponseError('500'),329,2026-06-22T16:09:29Z,2026-06-22T16:11:07Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('500 Server Error: Internal Server Error for url: PATCH /api/orders/{id}/status'),181,2026-06-22T16:09:29Z,2026-06-22T16:11:07Z
+GET,GET /api/orders (cached),CatchResponseError('502'),2553,2026-06-22T16:09:45Z,2026-06-22T16:09:59Z
+GET,GET /api/users/me,HTTPError('502 Server Error: Bad Gateway for url: GET /api/users/me'),2512,2026-06-22T16:09:45Z,2026-06-22T16:09:59Z
+DELETE,DELETE /api/orders/{id},CatchResponseError('500'),186,2026-06-22T16:09:30Z,2026-06-22T16:11:06Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('502 Server Error: Bad Gateway for url: PATCH /api/orders/{id}/status'),876,2026-06-22T16:09:46Z,2026-06-22T16:09:59Z

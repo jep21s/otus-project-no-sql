@@ -1,0 +1,49 @@
+name: orders-a2
+
+services:
+  couchbase:
+    image: couchbase/server:7.6.0
+    environment:
+      # не критично; контейнер конфигурится через init-контейнер
+      TYPE: SERVER
+    ports:
+      - "8091-8094:8091-8094"
+      - "11210:11210"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sSf http://localhost:8091/pools >/dev/null"]
+      interval: 5s
+      timeout: 4s
+      retries: 60
+      start_period: 15s
+
+  couchbase-init:
+    image: couchbase/server:7.6.0
+    depends_on:
+      couchbase:
+        condition: service_healthy
+    entrypoint: ["/bin/bash", "/setup/couchbase-setup.sh"]
+    environment:
+      CB_NODES: couchbase
+      CB_BUCKET: orders
+      CB_USER: Administrator
+      CB_PASS: password
+      CB_RAMSIZE: "1024"
+    volumes:
+      - ./couchbase-setup.sh:/setup/couchbase-setup.sh:ro
+
+  app:
+    image: order-service:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: a2
+      JAVA_OPTS: "-XX:MaxRAMPercentage=75 -XX:+UseG1GC"
+    depends_on:
+      couchbase-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health | grep -q '\"status\":\"UP'"]
+      interval: 5s
+      timeout: 4s
+      retries: 60
+      start_period: 20s
+    ports:
+      - "8080:8080"

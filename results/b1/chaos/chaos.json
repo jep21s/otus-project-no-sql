@@ -1,0 +1,9 @@
+{
+  "case": "b1",
+  "victim": "redis-master",
+  "kill_at": 30,
+  "duration": 90,
+  "rto_seconds": 0,
+  "kill_epoch": 1782133989,
+  "end_epoch": 1782134049
+}

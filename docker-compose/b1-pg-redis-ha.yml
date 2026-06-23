@@ -1,0 +1,95 @@
+name: orders-b1
+
+services:
+  pg-master:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: orders
+      POSTGRES_USER: orders
+      POSTGRES_PASSWORD: orders
+      POSTGRES_HOST_AUTH_METHOD: trust
+    command: ["postgres", "-c", "wal_level=replica", "-c", "max_wal_senders=10", "-c", "max_replication_slots=10", "-c", "hot_standby=on"]
+    volumes:
+      - pgmaster:/var/lib/postgresql/data
+      - ./pg/00-replication.sh:/docker-entrypoint-initdb.d/00-replication.sh:ro
+      - ./pg/master-init.sql:/docker-entrypoint-initdb.d/10-master-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orders -d orders"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  pg-replica:
+    image: postgres:16-alpine
+    environment:
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_HOST_AUTH_METHOD: trust
+    entrypoint: ["/bin/sh", "/replica/replica-entrypoint.sh"]
+    volumes:
+      - pgreplica:/var/lib/postgresql/data
+      - ./pg/replica-entrypoint.sh:/replica/replica-entrypoint.sh:ro
+    depends_on:
+      pg-master:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orders -d orders && psql -U orders -d orders -tAc \"select pg_is_in_recovery()\" | grep -q t"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  redis-master:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  redis-replica:
+    image: redis:7-alpine
+    command: ["redis-server", "--replicaof", "redis-master", "6379", "--save", "", "--appendonly", "no"]
+    depends_on:
+      redis-master:
+        condition: service_healthy
+
+  redis-sentinel-1:
+    image: redis:7-alpine
+    command: ["sh", "-c", "until getent hosts redis-master; do sleep 1; done; cp /conf/sentinel.conf /tmp/s.conf && redis-sentinel /tmp/s.conf"]
+    volumes: ["./redis/sentinel.conf:/conf/sentinel.conf"]
+    depends_on: ["redis-master"]
+  redis-sentinel-2:
+    image: redis:7-alpine
+    command: ["sh", "-c", "until getent hosts redis-master; do sleep 1; done; cp /conf/sentinel.conf /tmp/s.conf && redis-sentinel /tmp/s.conf"]
+    volumes: ["./redis/sentinel.conf:/conf/sentinel.conf"]
+    depends_on: ["redis-master"]
+  redis-sentinel-3:
+    image: redis:7-alpine
+    command: ["sh", "-c", "until getent hosts redis-master; do sleep 1; done; cp /conf/sentinel.conf /tmp/s.conf && redis-sentinel /tmp/s.conf"]
+    volumes: ["./redis/sentinel.conf:/conf/sentinel.conf"]
+    depends_on: ["redis-master"]
+
+  app:
+    image: order-service:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: b1
+      JAVA_OPTS: "-XX:MaxRAMPercentage=75 -XX:+UseG1GC"
+    depends_on:
+      pg-master:
+        condition: service_healthy
+      pg-replica:
+        condition: service_healthy
+      redis-sentinel-1:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/actuator/health | grep -q '\"status\":\"UP'"]
+      interval: 5s
+      timeout: 4s
+      retries: 60
+      start_period: 30s
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgmaster:
+  pgreplica:

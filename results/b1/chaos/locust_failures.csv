@@ -1,0 +1,8 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,GET /api/products,HTTPError('500 Server Error:  for url: GET /api/products'),29,2026-06-22T13:13:39Z,2026-06-22T13:13:39Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('500 Server Error:  for url: PATCH /api/orders/{id}/status'),21,2026-06-22T13:13:39Z,2026-06-22T13:13:39Z
+GET,GET /api/users/me,HTTPError('500 Server Error:  for url: GET /api/users/me'),23,2026-06-22T13:13:39Z,2026-06-22T13:13:39Z
+GET,GET /api/orders (cached),CatchResponseError('500'),35,2026-06-22T13:13:39Z,2026-06-22T13:13:39Z
+POST,POST /api/orders,CatchResponseError('500'),22,2026-06-22T13:13:39Z,2026-06-22T13:13:39Z
+GET,GET /api/products/{id},HTTPError('500 Server Error:  for url: GET /api/products/{id}'),35,2026-06-22T13:13:39Z,2026-06-22T13:13:39Z
+DELETE,DELETE /api/orders/{id},CatchResponseError('500'),15,2026-06-22T13:13:39Z,2026-06-22T13:13:39Z

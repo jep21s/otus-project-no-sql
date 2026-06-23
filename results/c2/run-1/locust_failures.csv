@@ -1,0 +1,10 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,GET /api/users/me,HTTPError('500 Server Error: Internal Server Error for url: GET /api/users/me'),320,2026-06-22T16:00:34Z,2026-06-22T16:02:11Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('504 Server Error: Gateway Time-out for url: PATCH /api/orders/{id}/status'),1,2026-06-22T16:00:52Z,2026-06-22T16:00:52Z
+GET,GET /api/products/{id},HTTPError('500 Server Error: Internal Server Error for url: GET /api/products/{id}'),361,2026-06-22T16:00:34Z,2026-06-22T16:02:10Z
+POST,POST /api/orders,CatchResponseError('504'),2,2026-06-22T16:00:54Z,2026-06-22T16:01:41Z
+GET,GET /api/products,HTTPError('500 Server Error: Internal Server Error for url: GET /api/products'),344,2026-06-22T16:00:34Z,2026-06-22T16:02:10Z
+GET,GET /api/orders (cached),CatchResponseError('500'),358,2026-06-22T16:00:34Z,2026-06-22T16:02:10Z
+POST,POST /api/orders,CatchResponseError('500'),371,2026-06-22T16:00:34Z,2026-06-22T16:02:11Z
+PATCH,PATCH /api/orders/{id}/status,HTTPError('500 Server Error: Internal Server Error for url: PATCH /api/orders/{id}/status'),198,2026-06-22T16:00:34Z,2026-06-22T16:02:10Z
+DELETE,DELETE /api/orders/{id},CatchResponseError('500'),199,2026-06-22T16:00:34Z,2026-06-22T16:02:10Z

@@ -1,0 +1,9 @@
+{
+  "case": "b2",
+  "victim": "couchbase-node-2",
+  "kill_at": 40,
+  "duration": 120,
+  "rto_seconds": 0,
+  "kill_epoch": 1782144858,
+  "end_epoch": 1782144942
+}

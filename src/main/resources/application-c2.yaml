@@ -1,0 +1,18 @@
+# C2: Couchbase 3-node cluster (secure-join TLS, FQDN) + 2 app
+spring:
+  couchbase:
+    connection-string: couchbase://node-1.cb.internal,node-2.cb.internal,node-3.cb.internal
+    username: Administrator
+    password: password
+  data:
+    couchbase:
+      bucket-name: orders
+      auto-index: true
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.redis.RedisRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration

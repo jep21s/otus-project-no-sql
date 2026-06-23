@@ -1,0 +1,5 @@
+Method,Name,Error,Occurrences,First Seen,Last Seen
+GET,GET /api/products,HTTPError('500 Server Error:  for url: GET /api/products'),6,2026-06-22T10:42:11Z,2026-06-22T10:42:43Z
+GET,GET /api/orders (cached),CatchResponseError('500'),7,2026-06-22T10:42:11Z,2026-06-22T10:42:46Z
+POST,POST /api/orders,CatchResponseError('500'),10,2026-06-22T10:42:11Z,2026-06-22T10:42:46Z
+DELETE,DELETE /api/orders/{id},CatchResponseError('500'),1,2026-06-22T10:42:33Z,2026-06-22T10:42:33Z

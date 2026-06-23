@@ -1,0 +1,357 @@
+{
+  "case": "b1",
+  "stack": "PG master+replica + Redis master+replica+3 sentinel",
+  "tier": "B",
+  "target": "pg",
+  "runs": [
+    {
+      "run": "run-1",
+      "requests_per_s": 1118.3999329706683,
+      "total_requests": 134847.0,
+      "failures_per_s": 0.0,
+      "p50": 360.0,
+      "p90": 470.0,
+      "p95": 500.0,
+      "p99": 540.0,
+      "avg": 327.2925678172753
+    },
+    {
+      "run": "run-2",
+      "requests_per_s": 1023.5100335356162,
+      "total_requests": 124069.0,
+      "failures_per_s": 0.0,
+      "p50": 420.0,
+      "p90": 550.0,
+      "p95": 570.0,
+      "p99": 610.0,
+      "avg": 380.96193223417845
+    },
+    {
+      "run": "run-3",
+      "requests_per_s": 1014.390675308087,
+      "total_requests": 122371.0,
+      "failures_per_s": 0.0,
+      "p50": 420.0,
+      "p90": 560.0,
+      "p95": 580.0,
+      "p99": 620.0,
+      "avg": 385.8387799210254
+    }
+  ],
+  "metrics": {
+    "requests_per_s": {
+      "min": 1014.390675308087,
+      "max": 1118.3999329706683,
+      "mean": 1052.100213938124,
+      "median": 1023.5100335356162,
+      "stddev": 57.59800544694453
+    },
+    "p50": {
+      "min": 360.0,
+      "max": 420.0,
+      "mean": 400.0,
+      "median": 420.0,
+      "stddev": 34.64101615137755
+    },
+    "p90": {
+      "min": 470.0,
+      "max": 560.0,
+      "mean": 526.6666666666666,
+      "median": 550.0,
+      "stddev": 49.32882862316247
+    },
+    "p95": {
+      "min": 500.0,
+      "max": 580.0,
+      "mean": 550.0,
+      "median": 570.0,
+      "stddev": 43.58898943540674
+    },
+    "p99": {
+      "min": 540.0,
+      "max": 620.0,
+      "mean": 590.0,
+      "median": 610.0,
+      "stddev": 43.58898943540674
+    },
+    "avg": {
+      "min": 327.2925678172753,
+      "max": 385.8387799210254,
+      "mean": 364.6977599908264,
+      "median": 380.96193223417845,
+      "stddev": 32.48549233112207
+    },
+    "total_requests": {
+      "min": 122371.0,
+      "max": 134847.0,
+      "mean": 127095.66666666667,
+      "median": 124069.0,
+      "stddev": 6766.32672380911
+    },
+    "failures_per_s": {
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "median": 0.0,
+      "stddev": 0.0
+    }
+  },
+  "containers": {
+    "app-1": {
+      "cpu_avg": 158.28428571428572,
+      "cpu_peak": 403.04,
+      "mem_avg_mb": 713.7405133928571,
+      "mem_peak_mb": 828.4453125,
+      "runs": [
+        {
+          "cpu_avg": 168.14,
+          "cpu_peak": 400.58,
+          "mem_avg_mb": 713.7405133928571,
+          "mem_peak_mb": 777.73046875,
+          "net_rx_total_mb": 362.4271640777588,
+          "net_tx_total_mb": 529.6893901824951
+        },
+        {
+          "cpu_avg": 158.28428571428572,
+          "cpu_peak": 392.19,
+          "mem_avg_mb": 756.3125,
+          "mem_peak_mb": 828.4453125,
+          "net_rx_total_mb": 329.61341857910156,
+          "net_tx_total_mb": 482.2638940811157
+        },
+        {
+          "cpu_avg": 157.97714285714287,
+          "cpu_peak": 403.04,
+          "mem_avg_mb": 709.1780133928571,
+          "mem_peak_mb": 773.1796875,
+          "net_rx_total_mb": 327.24153327941895,
+          "net_tx_total_mb": 478.86088848114014
+        }
+      ]
+    },
+    "pg-master-1": {
+      "cpu_avg": 71.34857142857143,
+      "cpu_peak": 89.35,
+      "mem_avg_mb": 194.84654017857142,
+      "mem_peak_mb": 222.6328125,
+      "runs": [
+        {
+          "cpu_avg": 71.23142857142857,
+          "cpu_peak": 78.19,
+          "mem_avg_mb": 197.4375,
+          "mem_peak_mb": 222.6328125,
+          "net_rx_total_mb": 102.81474304199219,
+          "net_tx_total_mb": 369.7164115905762
+        },
+        {
+          "cpu_avg": 71.61,
+          "cpu_peak": 82.11,
+          "mem_avg_mb": 194.84654017857142,
+          "mem_peak_mb": 221.86328125,
+          "net_rx_total_mb": 95.49281883239746,
+          "net_tx_total_mb": 343.38155364990234
+        },
+        {
+          "cpu_avg": 71.34857142857143,
+          "cpu_peak": 89.35,
+          "mem_avg_mb": 194.33761160714286,
+          "mem_peak_mb": 222.078125,
+          "net_rx_total_mb": 93.41189765930176,
+          "net_tx_total_mb": 334.9778299331665
+        }
+      ]
+    },
+    "pg-replica-1": {
+      "cpu_avg": 6.0285714285714285,
+      "cpu_peak": 9.29,
+      "mem_avg_mb": 136.60435267857142,
+      "mem_peak_mb": 165.5546875,
+      "runs": [
+        {
+          "cpu_avg": 6.0285714285714285,
+          "cpu_peak": 7.94,
+          "mem_avg_mb": 136.97433035714286,
+          "mem_peak_mb": 165.5546875,
+          "net_rx_total_mb": 88.30466175079346,
+          "net_tx_total_mb": 8.500253677368164
+        },
+        {
+          "cpu_avg": 5.968571428571428,
+          "cpu_peak": 8.6,
+          "mem_avg_mb": 136.60435267857142,
+          "mem_peak_mb": 163.56640625,
+          "net_rx_total_mb": 85.12698268890381,
+          "net_tx_total_mb": 8.096128463745117
+        },
+        {
+          "cpu_avg": 6.0685714285714285,
+          "cpu_peak": 9.29,
+          "mem_avg_mb": 136.04408482142858,
+          "mem_peak_mb": 163.171875,
+          "net_rx_total_mb": 84.62165355682373,
+          "net_tx_total_mb": 8.246755599975586
+        }
+      ]
+    },
+    "redis-master-1": {
+      "cpu_avg": 4.614285714285715,
+      "cpu_peak": 6.78,
+      "mem_avg_mb": 12.263392857142858,
+      "mem_peak_mb": 12.875,
+      "runs": [
+        {
+          "cpu_avg": 4.561428571428571,
+          "cpu_peak": 6.06,
+          "mem_avg_mb": 12.164620535714286,
+          "mem_peak_mb": 12.6015625,
+          "net_rx_total_mb": 162.54042148590088,
+          "net_tx_total_mb": 218.92016124725342
+        },
+        {
+          "cpu_avg": 4.895714285714286,
+          "cpu_peak": 6.78,
+          "mem_avg_mb": 12.263392857142858,
+          "mem_peak_mb": 12.87109375,
+          "net_rx_total_mb": 147.75444793701172,
+          "net_tx_total_mb": 196.5565595626831
+        },
+        {
+          "cpu_avg": 4.614285714285715,
+          "cpu_peak": 6.28,
+          "mem_avg_mb": 12.280133928571429,
+          "mem_peak_mb": 12.875,
+          "net_rx_total_mb": 148.83109092712402,
+          "net_tx_total_mb": 199.913743019104
+        }
+      ]
+    },
+    "redis-replica-1": {
+      "cpu_avg": 1.44,
+      "cpu_peak": 1.76,
+      "mem_avg_mb": 11.33984375,
+      "mem_peak_mb": 12.13671875,
+      "runs": [
+        {
+          "cpu_avg": 1.3728571428571428,
+          "cpu_peak": 1.52,
+          "mem_avg_mb": 11.33984375,
+          "mem_peak_mb": 11.80859375,
+          "net_rx_total_mb": 145.74598217010498,
+          "net_tx_total_mb": 1.9648122787475586
+        },
+        {
+          "cpu_avg": 1.4857142857142858,
+          "cpu_peak": 1.7,
+          "mem_avg_mb": 11.518973214285714,
+          "mem_peak_mb": 12.13671875,
+          "net_rx_total_mb": 132.443452835083,
+          "net_tx_total_mb": 1.861191749572754
+        },
+        {
+          "cpu_avg": 1.44,
+          "cpu_peak": 1.76,
+          "mem_avg_mb": 11.188058035714286,
+          "mem_peak_mb": 11.89453125,
+          "net_rx_total_mb": 125.8058853149414,
+          "net_tx_total_mb": 1.7605247497558594
+        }
+      ]
+    },
+    "redis-sentinel-1-1": {
+      "cpu_avg": 0.7728571428571429,
+      "cpu_peak": 0.95,
+      "mem_avg_mb": 8.11328125,
+      "mem_peak_mb": 8.1171875,
+      "runs": [
+        {
+          "cpu_avg": 0.7671428571428571,
+          "cpu_peak": 0.9,
+          "mem_avg_mb": 8.11328125,
+          "mem_peak_mb": 8.11328125,
+          "net_rx_total_mb": 0.5082645416259766,
+          "net_tx_total_mb": 0.2612600326538086
+        },
+        {
+          "cpu_avg": 0.7728571428571429,
+          "cpu_peak": 0.95,
+          "mem_avg_mb": 8.11328125,
+          "mem_peak_mb": 8.11328125,
+          "net_rx_total_mb": 0.5204010009765625,
+          "net_tx_total_mb": 0.27086353302001953
+        },
+        {
+          "cpu_avg": 0.7742857142857142,
+          "cpu_peak": 0.87,
+          "mem_avg_mb": 8.1171875,
+          "mem_peak_mb": 8.1171875,
+          "net_rx_total_mb": 0.5098247528076172,
+          "net_tx_total_mb": 0.2620735168457031
+        }
+      ]
+    },
+    "redis-sentinel-2-1": {
+      "cpu_avg": 0.7628571428571429,
+      "cpu_peak": 0.92,
+      "mem_avg_mb": 8.10546875,
+      "mem_peak_mb": 8.11328125,
+      "runs": [
+        {
+          "cpu_avg": 0.6871428571428572,
+          "cpu_peak": 0.78,
+          "mem_avg_mb": 8.1015625,
+          "mem_peak_mb": 8.1015625,
+          "net_rx_total_mb": 0.5102396011352539,
+          "net_tx_total_mb": 0.26213645935058594
+        },
+        {
+          "cpu_avg": 0.7628571428571429,
+          "cpu_peak": 0.84,
+          "mem_avg_mb": 8.11328125,
+          "mem_peak_mb": 8.11328125,
+          "net_rx_total_mb": 0.5160074234008789,
+          "net_tx_total_mb": 0.26795291900634766
+        },
+        {
+          "cpu_avg": 0.8085714285714286,
+          "cpu_peak": 0.92,
+          "mem_avg_mb": 8.10546875,
+          "mem_peak_mb": 8.10546875,
+          "net_rx_total_mb": 0.53338623046875,
+          "net_tx_total_mb": 0.27274608612060547
+        }
+      ]
+    },
+    "redis-sentinel-3-1": {
+      "cpu_avg": 0.74,
+      "cpu_peak": 0.91,
+      "mem_avg_mb": 8.109933035714286,
+      "mem_peak_mb": 8.36328125,
+      "runs": [
+        {
+          "cpu_avg": 0.73,
+          "cpu_peak": 0.9,
+          "mem_avg_mb": 8.109375,
+          "mem_peak_mb": 8.109375,
+          "net_rx_total_mb": 0.5132265090942383,
+          "net_tx_total_mb": 0.26468372344970703
+        },
+        {
+          "cpu_avg": 0.74,
+          "cpu_peak": 0.87,
+          "mem_avg_mb": 8.109933035714286,
+          "mem_peak_mb": 8.11328125,
+          "net_rx_total_mb": 0.5119171142578125,
+          "net_tx_total_mb": 0.26489734649658203
+        },
+        {
+          "cpu_avg": 0.7485714285714286,
+          "cpu_peak": 0.91,
+          "mem_avg_mb": 8.148995535714286,
+          "mem_peak_mb": 8.36328125,
+          "net_rx_total_mb": 0.5157127380371094,
+          "net_tx_total_mb": 0.2676420211791992
+        }
+      ]
+    }
+  }
+}

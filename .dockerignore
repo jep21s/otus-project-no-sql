@@ -1,0 +1,10 @@
+.git
+.idea
+.vscode
+.gradle
+build
+out
+results
+report
+*.iml
+PLAN.md
