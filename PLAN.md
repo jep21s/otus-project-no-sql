@@ -503,6 +503,3 @@ otus-project-no-sql/
   4. `cluster-init` мастера, затем `server-add <FQDN>:18091` (HTTPS-порт, **не 8091**), затем `rebalance`.
   5. Приложение подключается по plain `couchbase://<FQDN>,...` (client-to-node без TLS) — менять клиент не нужно.
 - **HA на стандартных образах**: bitnami deprecated (с 08.2025), поэтому B1/C1 — `postgres:16` (streaming replication через `pg_basebackup` + `00-replication.sh`/`replica-entrypoint.sh`) и `redis:7-alpine` (sentinel.conf с `resolve-hostnames yes`; redis-cluster через `redis-cli --cluster create`).
-
-**Что выполнено:** все 6 кейсов промерены (3 прогона × 2 мин), Couchbase multi-node работает (2 и 3 ноды), chaos B1 (redis) и B2 (couchbase node), отчёты `results/<case>/REPORT.md`, `report/RESEARCH_REPORT.md`, `RESULT.md`.
-**Не выполнено (переносится):** chaos C1/C2, ручная правка тезисов `RESULT.md` под финальную презентацию.
